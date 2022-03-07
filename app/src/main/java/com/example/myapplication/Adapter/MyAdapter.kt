@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myapplication.ModelClasses.Article
 
 import com.example.myapplication.R
@@ -25,7 +26,7 @@ class MyAdapter(val context:Context,val articles: List<Article>) : RecyclerView.
         holder.txtDescription.text = article.description
         Glide.with(context)
             .load(article.urlToImage)
-            .placeholder(R.drawable.ic_launcher_foreground)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(holder.imageview);
 
     }

@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.myapplication.Repository.NewsRepository
 import com.yogify.kotlinprojectjetpack.Architecture_Component.MvvmWithRetrofit_NewsApp.API.NewsRetrofitHelper
 import com.yogify.kotlinprojectjetpack.Architecture_Component.MvvmWithRetrofit_NewsApp.API.NewsService
+import com.yogify.kotlinprojectjetpack.Architecture_Component.MvvmWithRetrofit_NewsApp.LocalDataBase.ArticleDatabase
 
 
 class ApplicationClass : Application() {
@@ -15,8 +16,8 @@ class ApplicationClass : Application() {
 
     fun Initialization() {
         val newsapi = NewsRetrofitHelper.getInstance().create(NewsService::class.java)
-        //val database = NewsDatabase.getDataBase(applicationContext)
-        newsRepository = NewsRepository(newsapi, applicationContext)
+        val database = ArticleDatabase.getDataBase(applicationContext)
+        newsRepository = NewsRepository(newsapi,database, applicationContext)
     }
 
 }
